@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'auth.apps.AuthConfig',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -93,7 +93,7 @@ DATABASES = {
 }
 
 ## User model
-AUTH_USER_MODEL = 'auth.AppUser'
+AUTH_USER_MODEL = 'authentication.AppUser'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
