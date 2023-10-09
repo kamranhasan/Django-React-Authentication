@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 
 class ProductListView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
-    authentication_classes = (SessionAuthentication,)
+    # authentication_classes = (SessionAuthentication,)
 	
     def get(self, request):
         sort_field = request.query_params.get('sort', 'name') # sort by name by default
@@ -31,7 +31,7 @@ class ProductListView(APIView):
 
 class ProductDetailView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
-    authentication_classes = (SessionAuthentication,)
+    # authentication_classes = (SessionAuthentication,)
 	
     def get(self, request, product_id):
         product = get_object_or_404(Product, product_id=product_id)

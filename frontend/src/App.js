@@ -1,24 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import { HashRouter, Route, Routes, Navigate, NavLink } from "react-router-dom";
+import Signup from "./Pages/Signup.js";
+import Signin from "./Pages/Signin.js";
+import Home from "./Pages/Home.js";
+import {checkToken} from "./Utils/auth";
 
 function App() {
+  const [isLoggedin, setIsLoggedIn] = useState(checkToken)
+  
+  const protected_routes = [
+    <Route exact path={`/home`} element={<Home />} />,
+  ]
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <Routes>
+          <Route path={`/*`} element={<Signup />} />
+          <Route exact path={`/sign-in`} element={<Signin />} />
+          {isLoggedin && protected_routes.map(
+            (route) => route
+          )}
+        </Routes>
   );
 }
 
